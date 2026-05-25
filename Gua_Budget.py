@@ -23,26 +23,26 @@ while True:
         break
 
 #------------------查詢------------------------
-if date.lower() == 'q':
-    q_type = input("[查詢模式] 輸入想查詢的日期\n(xxxx 或 xxxx-xx 或 xxxx-xx-xx): ")
-    print(f"\n--- 以下是 {q_type} 的查詢結果 ---")
+    if date.lower() == 'q':
+        q_type = input("[查詢模式] 輸入想查詢的日期\n(xxxx 或 xxxx-xx 或 xxxx-xx-xx): ")
+        print(f"\n--- 以下是 {q_type} 的查詢結果 ---")
         
-    q_total = 0
-    found_any = False
-    for r in records:
+        q_total = 0
+        found_any = False
+        for r in records:
         # 【修正點】使用 startswith() 代替 ==，這樣就能做到前方一致的模糊查詢
-        if r["日期"].startswith(q_type):
-            print(f"{r['日期']} | {r['項目']} | {r['金額']} 元")
-            q_total += r['金額']
-            found_any = True
+            if r["日期"].startswith(q_type):
+                print(f"{r['日期']} | {r['項目']} | {r['金額']} 元")
+                q_total += r['金額']
+                found_any = True
         
-        if not found_any:
-            print(f"沒有找到符合「{q_type}」的紀錄。")
-        else:
-            print("-----------------------------------------")
-            print(f"{q_type} 總共花費： {q_total} 元")
-        print("-----------------------------------------\n")
-        continue # 查詢完畢，回到主選單
+            if not found_any:
+                print(f"沒有找到符合「{q_type}」的紀錄。")
+            else:
+                print("-----------------------------------------")
+                print(f"{q_type} 總共花費： {q_total} 元")
+            print("-----------------------------------------\n")
+            continue # 查詢完畢，回到主選單
 
 #------------------記帳--------------------------------       
     if date.lower() == 'n': 
