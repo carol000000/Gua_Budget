@@ -12,7 +12,7 @@ else:
     records = []
 
 print(f"=== 歡迎回來！目前已紀錄了 {len(records)} 筆消費 ===")
-print("('x' 存檔離開）\n('q'查詢)\n('n'記帳)\n('e'查詢目前所有資訊)\n('d'刪除資料)")
+print("('x' 存檔離開）\n('q'查詢)\n('n'記帳)\n('e'查詢目前所有資訊)\n('d'刪除資料)\n('s')存檔")
 
 # 2. 開啟無限循環，直到你不想記為止
 while True:
@@ -47,8 +47,18 @@ while True:
 #------------------記帳--------------------------------       
     if date.lower() == 'n': 
         day = input("請輸入日期(xxxx-xx-xx): ")
+        if day.lower()=='x':
+            print("已取消")
+            continue
         item = input("請輸入消費項目: ")
-        amount = int(input("請輸入花費金額: "))
+        if item.lower()=='x':
+            print("已取消")
+            continue
+        try:
+            amount = int(input("請輸入花費金額: "))
+        except:
+            print("已取消")
+            continue
 
         # 3. 把這一筆新資料打包
         new_record = {
@@ -127,7 +137,10 @@ while True:
             print("-----------------------------------------\n")
             # 刪除完一筆後，會回到刪除模式的開頭，讓你可以繼續輸入日期或輸入 'x' 離開
             continue
-
+    if date.lower()=='s':
+        with open("budget.json", "w", encoding="utf-8") as f:
+            json.dump(records, f, ensure_ascii=False, indent=4)
+        print("已存檔")
 #--------------------------------------------------------------------
 
 # 5. 當你打 x 跳出最外層迴圈後，才會來到這一步：一次性存檔
