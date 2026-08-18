@@ -36,13 +36,13 @@ while True:
                 q_total += r['金額']
                 found_any = True
         
-            if not found_any:
-                print(f"沒有找到符合「{q_type}」的紀錄。")
-            else:
-                print("-----------------------------------------")
-                print(f"{q_type} 總共花費： {q_total} 元")
-            print("-----------------------------------------\n")
-            continue # 查詢完畢，回到主選單
+        if not found_any:
+            print(f"沒有找到符合「{q_type}」的紀錄。")
+        else:
+            print("-----------------------------------------")
+            print(f"{q_type} 總共花費： {q_total} 元")
+        print("-----------------------------------------\n")
+        continue # 查詢完畢，回到主選單
 
 #------------------記帳--------------------------------       
     if date.lower() == 'n': 
